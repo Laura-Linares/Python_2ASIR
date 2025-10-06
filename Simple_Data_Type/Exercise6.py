@@ -2,6 +2,9 @@
 #después muestre en pantalla la suma de todos los enteros desde 1 hasta n. La suma
 #de los primeros enteros positivos puede ser calculada de la siguiente forma:
 
+import os
+os.system("clear")
+
 n=int(input("Por favor, introduzca un entero positivo: "))
 if n < 0:
     print("El número introducido no es un entero positivo")
