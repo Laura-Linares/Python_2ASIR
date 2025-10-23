@@ -3,31 +3,36 @@
 #----Script: Practice 2-----
 #-- Use: changes a personal email to a company email
 
+#--Library importation--
+import time
+import os
+
 #--Variable declaration--
 newEmailsFile='new_emails.txt'
 
 #--Function declaration--
-def ChangeEmail():
+def clean():
+    os.system("clear")
+
+def ChangeEmail(routefile):
     #-----Read the file------
     with open(file,"r") as f:
         for line in f:
             # Separate the line in two parts [NameLastName 0] [email 1]
             newline=line.split(':')
-            # A new variable has the value of the email section
-            email=line[1]
-            # Find the @ to separate the personal ending
-            separation=email.find('@')
+            # A new variable that will have the value of the email section
+            email=newline[1]
+            # Separate the personal ending spliting the email into two sections
+            emailpart=email.split('@')
             # Create the new email with the first part and the second part gived by the user
-            newEmail=email[:separation] + lastPartofEmail
+            newEmail=emailpart[0] + '@' + lastPartofEmail
             # Write the new employee with email in a new file
             with open(newEmailsFile, 'a') as f:
                 f.write(f"{newline[0]}:{newEmail}\n")
 
 
 #------Script starts-----
-import os
-import time
-os.system("cls")
+clean()
 
 # Data recolect
 print("Hello, user. This is an AUTOMATIZED program that changes your employees personal e-mails to company e-mails \n")
@@ -37,6 +42,20 @@ print("Name,LastName:personalemail@example.com \n")
 file=input("Route: ")
 print("\n")
 
+#-Cheking Errors on File-
+if not os.path.exists(file):
+    print("Error. Your route is not correct. It doesn't exists \n")
+    print("Exiting...")
+    exit(1)
+if not os.path.isfile(file):
+    print("Error. The route you specified is not a file \n")
+    print("Exiting...")
+    exit(1)
+if not os.path.exists(newEmailsFile):
+    with open(newEmailsFile, 'w') as f:
+        pass
+
+# More data recolect
 lastPartofEmail=input("Please, now introduce your company extension 'g.e. example.com': ")
 print("")
 answer=input(f"Your company extension is {lastPartofEmail}? (yes/no): ").lower()
@@ -54,6 +73,12 @@ while answer != 'yes' and answer != 'y' and answer != '*':
         print("Also, you can exit typing '*' \n")
     answer=input(f"Your company extension is {lastPartofEmail}? (yes/no): ").lower()
 
-print("you said yes! :)")
+clean()
+print("Working on the file... \n")
+time.sleep(2)
+ChangeEmail(file)
 
-#-Cheking Errors on File-
+print("The changes have been done \n")
+print("Thank you for using this script \n")
+print("Have a nice day!")
+exit(0)

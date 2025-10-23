@@ -10,6 +10,6 @@ nombre=input("Por favor, introduzca el nombre del producto: ")
 precio=float(input("Por favor, introduzca el precio del producto: "))
 unidades=int(input("Por favor, introduzca el número de unidades: "))
 
-print(f"El producto {nombre} con precio {precio:08.2f} por unidad tiene {unidades:03} unidades")
+print(f"El producto {nombre} con precio {precio:09.2f} por unidad tiene {unidades:03} unidades")
 coste=precio*unidades
-print(f"El coste total de todas las unidades es de: {coste:010.2f}")
+print(f"El coste total de todas las unidades es de: {coste:011.2f}")
