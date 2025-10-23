@@ -12,24 +12,25 @@ newEmailsFile='new_emails.txt'
 
 #--Function declaration--
 def clean():
-    os.system("clear")
+    if os.name == 'nt':
+        os.system("cls")
+    else:
+        os.system('clear')
 
-def ChangeEmail(routefile):
+def ChangeEmail(routefile,lastPartofEmail):
     #-----Read the file------
-    with open(file,"r") as f:
+    with open(routefile,"r") as f, open(newEmailsFile, "a") as new_f:
         for line in f:
             # Separate the line in two parts [NameLastName 0] [email 1]
-            newline=line.split(':')
+            newline=line.strip().split(':')
             # A new variable that will have the value of the email section
-            email=newline[1]
+            email=newline[1].strip()
             # Separate the personal ending spliting the email into two sections
             emailpart=email.split('@')
             # Create the new email with the first part and the second part gived by the user
-            newEmail=emailpart[0] + '@' + lastPartofEmail
-            # Write the new employee with email in a new file
-            with open(newEmailsFile, 'a') as f:
-                f.write(f"{newline[0]}:{newEmail}\n")
-
+            newEmail=f"{emailpart[0]}@{lastPartofEmail}"
+            # Write the new employee with email in the new file
+            new_f.write(f"{newline[0]}:{newEmail}\n")
 
 #------Script starts-----
 clean()
@@ -39,15 +40,15 @@ print("Hello, user. This is an AUTOMATIZED program that changes your employees p
 time.sleep(2)
 print("Please, introduce the route of the file that contains the emails in this format...: \n")
 print("Name,LastName:personalemail@example.com \n")
-file=input("Route: ")
+input_file=input("Route: ")
 print("\n")
 
 #-Cheking Errors on File-
-if not os.path.exists(file):
+if not os.path.exists(input_file):
     print("Error. Your route is not correct. It doesn't exists \n")
     print("Exiting...")
     exit(1)
-if not os.path.isfile(file):
+if not os.path.isfile(input_file):
     print("Error. The route you specified is not a file \n")
     print("Exiting...")
     exit(1)
@@ -76,7 +77,7 @@ while answer != 'yes' and answer != 'y' and answer != '*':
 clean()
 print("Working on the file... \n")
 time.sleep(2)
-ChangeEmail(file)
+ChangeEmail(input_file,lastPartofEmail)
 
 print("The changes have been done \n")
 print("Thank you for using this script \n")

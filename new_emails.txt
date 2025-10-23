@@ -3,3 +3,8 @@ Irene,Linares:ireneliinares@lauras.sh
 Mario,Linares:mar1oliin4res@lauras.sh
 Sergio,Linares:sergioroditer@lauras.sh
 Isabel,Lopez:athenea1sland@lauras.sh
+Laura,Linares:lauraliinares@rootlaura.py
+Irene,Linares:ireneliinares@rootlaura.py
+Mario,Linares:mar1oliin4res@rootlaura.py
+Sergio,Linares:sergioroditer@rootlaura.py
+Isabel,Lopez:athenea1sland@rootlaura.py
