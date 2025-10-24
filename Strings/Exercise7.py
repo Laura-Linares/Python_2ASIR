@@ -6,10 +6,8 @@ import os
 os.system("clear")
 
 correo=input("Por favor, introduzca su correo electrónico: ")
-#encontrar la posición donde está el @ para poder cortarlo
-posicion=correo.find("@")
-nombre=correo[:posicion]
-#una vez cortado, se añade la nueva extensión
-nuevocorreo=nombre + "@ceu.es"
+email=correo.split('@')
+
+nuevocorreo=email[0]+"@ceu.es"
 
 print(f"Su nuevo correo será: {nuevocorreo}")
