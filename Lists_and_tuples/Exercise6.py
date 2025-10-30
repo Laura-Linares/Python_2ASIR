@@ -26,11 +26,10 @@ while resp != "salir":
     notas+=[n]
     time.sleep(1)
 
-print(asignaturas)
-print(notas)
-
+# copia a la lista original de asignaturas para recorrerla
 asignaturascopia=asignaturas[:]
 
+limpiar()
 for asig,nota in zip(asignaturascopia,notas):
     if nota >= 5:
         asignaturas.remove(asig)
